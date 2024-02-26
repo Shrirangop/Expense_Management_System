@@ -6,6 +6,7 @@ import Landingpage from './Components/Landingpage/Landingpage';
 import {Routes,Route} from "react-router-dom"
 import Login_form from './Components/Loginform/Login_Form';
 import Signup_form from './Components/Signup_Form/Signup_Form';
+import DashBoard from './Components/Individuals/DashBoard/DashBoard';
 
 
 function App() {
@@ -18,6 +19,8 @@ function App() {
       <Route path="/" element={<Landingpage/>}></Route>
       <Route path="/Login_Form" element={<Login_form />}></Route>
       <Route path="/Signup_Form" element={<Signup_form />}></Route>
+      <Route path="/Individual" element={<DashBoard />}></Route>
+      
       </Routes>
      
     </div>

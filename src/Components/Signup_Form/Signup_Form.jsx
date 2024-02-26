@@ -1,140 +1,107 @@
 import {
-    Card,
-    Input,
-    Checkbox,
-    Button,
-    Typography,
-  } from "@material-tailwind/react";
+  Card,
+  Input,
+  Checkbox,
+  Button,
+  Typography,
+} from "@material-tailwind/react";
 
-  import { Link,useNavigate } from "react-router-dom";
-  import {useState} from  'react';
-   
-  export default function Signup_form() {
-    const  [Email, setEmail] = useState("");
-    const [Name,setName] = useState("");
-    const [Password,setPassword] = useState("");
-    const [date,setdate] = useState("");
-    const [gender,setgender] = useState("");
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { FcGoogle } from "react-icons/fc";
+
+export default function Signup_form() {
+  const [Email, setEmail] = useState("");
+  const [Name, setName] = useState("");
+  const [Password, setPassword] = useState("");
+  const [date, setdate] = useState("");
+  const [gender, setgender] = useState("");
+  const [Number, setNumber] = useState(0);
 
 
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-     const  handleSubmit = (e) =>{
-        e.preventDefault();
-        
-  
-        console.log(Email,Password,date,gender,Name);
-        navigate("/")
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  const HandleEmail = (e)=>{
-      // console.log(e);
-      setEmail(e.target.value);
+
+    console.log(Email, Password, date, gender, Name);
+    navigate("/")
   }
 
-  const Handledate = (e)=>{
+  const HandleEmail = (e) => {
+    // console.log(e);
+    setEmail(e.target.value);
+  }
+
+  const Handledate = (e) => {
     // console.log(e.target.value);
     setdate(e.target.value);
   }
 
-  const HandleName = (e)=>{
+  const HandleName = (e) => {
     // console.log(e.target.value);
     setName(e.target.value);
   }
 
-  const HandlePassword = (e)=>{
+  const HandlePassword = (e) => {
     // console.log(e.target.value);
     setPassword(e.target.value);
   }
 
-  const Handlegender = (e)=>{
-    // console.log(e.target.value);
-    setgender(e.target.value);
+  const HandleNumber = (e) => {
+    setNumber(e.target.value);
   }
-    return (
-       <Card color="gray" shadow={true} >
-        <div className="text-3xl text-center">
-        <Typography variant="h1" color="white" >
-          Sign Up
-        </Typography>
+
+
+  return (
+    <>
+
+      <div className="container w-1/4 h-2/3 bg-white rounded-lg shadow-md flex flex-col justify-center items-center">
+        <div className="Heading border-solid border-b-2 border-black w-4/5 h-auto mb-2">
+          <h1 className="text-3xl text-black font-100">Registration Form</h1>
         </div>
-       
-        
-        <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
-          <div className="mb-1 flex flex-col gap-6">
-            <Typography variant="h6" color="white" className="-mb-3">
-              Your Name
-            </Typography>
-            <Input
-            onChange={HandleName}
-              size="md"
-              placeholder="Name"
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900 text-black"
-           
-            />
-            </div>
-            <div className="mb-1 flex flex-col gap-6">
-            <Typography variant="h6" color="white" className="-mb-3">
-              Your Email
-            </Typography>
-            <Input
-            onChange={HandleEmail}
-            type = "email"
-              size="md"
-              placeholder="Email"
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900 text-black"
-             
-            />
-            </div>
-             <div className="mb-1 flex flex-col gap-6">
-            <Typography variant="h6" color="white" className="-mb-3">
-              Date of Birth
-            </Typography>
-            <Input
-            onChange={Handledate}
-            type = "date"
-              size="md"
-              placeholder="DOB"
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900 text-black"
-            
-            />
-            </div>
-             <div className="mb-1 flex flex-col gap-6">
-            <Typography variant="h6" color="white" className="-mb-3">
-              Gender
-            </Typography>
-            <Input
-            onChange={Handlegender}
-            type = "text"
-              size="md"
-              placeholder="Your Gender"
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900 text-black"
-             
-            />
-            <Typography variant="h6" color="white" className="-mb-3">
-              Password
-            </Typography>
-            <Input
-            onChange = {HandlePassword}
-              type="password"
-              size="md"
-              placeholder="********"
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900 text-black"
-           
-            />
+        <form onSubmit={handleSubmit} className="h-auto w-full flex flex-col justify-around items-center mt-2" >
+
+          <div className="name text-left flex flex-col text-lg justify-center w-4/5 h-auto m-2">
+            Name:<br />
+            <input type="text" onChange={HandleName} required className="bg-white border-inset border-2 w-full h-auto" placeholder="Name" />
           </div>
-          
-          <Button  onClick ={handleSubmit}  className="mt-6 bg-blue-600" fullWidth>
-            Sign Up
-          </Button>
-          <Typography color="gray" className="mt-4 text-center font-normal">
-            Already have an account?{" "}
-            <a href="#" className="font-medium text-white">
-              <Link to = "/">Sign In</Link>
-            </a>
-          </Typography>
+          <div className="email text-left flex flex-col text-lg justify-center w-4/5 h-auto m-2">
+            Email Address:<br />
+            <input type="email" onChange={HandleEmail} required className="bg-white border-inset border-2 w-full h-auto " placeholder="Email" />
+          </div>
+          <div className="number text-left flex flex-col text-lg justify-center w-4/5 h-auto m-2">
+            Phone Number:<br />
+            <input type="number" onChange={HandleNumber} required className="bg-white border-inset border-2 w-full h-auto " placeholder="Phone Number" />
+          </div>
+          <div className="password text-left flex flex-col text-lg justify-center w-4/5 h-auto m-2">
+            Password:<br />
+            <input type="password" onChange={HandlePassword} id='pwd' required className="bg-white border-inset border-2 w-full h-auto " placeholder="Password" />
+          </div>
+          <div className="dob text-left flex flex-col text-lg justify-center w-4/5 h-auto m-2">
+            Date of Birth:<br />
+            <input type="date" onChange={Handledate} className="bg-white border-inset border-2 w-full h-auto " placeholder="dd-mm-yyyy" />
+          </div>
+          <div className="button mt-2 bg-blue-600 w-4/5 h-1/2 text-white text-2xl">
+            <button type="submit" className="w-full h-full">Register</button>
+          </div>
         </form>
-      </Card>
-    );
-  }
+      </div>
+      {/* <div className="alternate mt-4 w-1/4 flex justify-center items center h-1/5">
+            <div className="google w-4/5 h-1/5 m-4 bg-white border-inset shadow-md text-lg font-100">
+              <button className = "w-full h-full flex justify-around items-center">
+              <FcGoogle />
+              </button>
+            </div>
+    
+            <div className="facebook w-4/5 h-2/5 m-4 bg-white border-inset shadow-md text-xl font-100">
+              <button>
+                
+              </button>
+            </div>
+          </div> */}
+    </>
+  );
+}
