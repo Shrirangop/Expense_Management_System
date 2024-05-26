@@ -11,7 +11,7 @@ export default function Expense_box(props) {
 
     const handleDelete = () => {
         try {
-            axios.delete(`http://localhost:4000/Expense/`,{
+            axios.delete(`https://expense-management-system-six.vercel.app/Expense`,{
                 title:props.title,
                 amount:props.amount,
                 date:props.date

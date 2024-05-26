@@ -15,7 +15,7 @@ export default function Add_Expense() {
     useEffect(() => {
     
     try{
-        axios.get(`http://localhost:4000/Expense`).then((res) => {
+        axios.get(`https://expense-management-system-six.vercel.app/Expense`).then((res) => {
             if (res.status == 200) {
                 setexpenses(res.data)
                 // console.log(expenses[0]);
