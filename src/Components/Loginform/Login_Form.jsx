@@ -2,6 +2,9 @@ import React from "react";
 import {Link,useNavigate} from "react-router-dom"
 import "./flex.css"
 import { useState } from "react";
+import axios from "axios";
+// import 'dotenv/config';
+
 
 
 /*
@@ -20,13 +23,42 @@ import { useState } from "react";
 */
 export default function Login_form() {
 
+  const Backend_URI = "http://127.0.0.1:4000";
+
     const  [Email, setEmail] = useState("");
     const [Password,setPassword] = useState("");
     const navigate = useNavigate();
 
-     const  handleSubmit = (e) =>{
+     const  handleSubmit = async(e) =>{
         e.preventDefault();
-        navigate("/Home")
+
+        try{
+
+        await axios.post(`http://localhost:4000/login`,{
+          email:Email,
+          password:Password
+        
+        }).then((res)=>{
+          if(res.status==200){
+          const {isUserPresent:isUserexist} = res.data;
+          console.log(res.data);
+          if(isUserexist){
+            navigate("/Individual");
+          }
+          else{
+            alert("Please check your credentials");
+          }
+        }
+
+        // else alert("internal server error");
+        })
+      }
+      catch(err){
+        console.log(err);
+      }
+
+        
+        // navigate("/Home")
   
         console.log(Email,Password);
     }

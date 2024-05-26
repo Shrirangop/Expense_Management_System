@@ -51,7 +51,7 @@ const Navigation = ()=>{
 
                     <div className="Update_profile text-white text-xl text-center w-full h-1/6 flex justify-evenly items-center cursor-pointer">
                     <RxUpdate />
-                          <Link>Update Profile</Link>
+                          <Link to = "Profile">Update Profile</Link>
                     </div>
                     </div>
 

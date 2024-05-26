@@ -9,25 +9,51 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { FcGoogle } from "react-icons/fc";
+import axios from "axios";
 
 export default function Signup_form() {
   const [Email, setEmail] = useState("");
   const [Name, setName] = useState("");
   const [Password, setPassword] = useState("");
   const [date, setdate] = useState("");
-  const [gender, setgender] = useState("");
+  // const [gender, setgender] = useState("");
   const [Number, setNumber] = useState(0);
 
 
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
 
-    console.log(Email, Password, date, gender, Name);
-    navigate("/")
+    console.log(Email, Password, date, Number, Name);
+
+    try {
+      await axios.post(`http://localhost:4000/Sign_up`, {
+        email: Email,
+        password: Password,
+        Phone_Number: Number,
+        name: Name
+      }).then((res) => {
+        if (res.status == 200) {
+          const { message } = res.data;
+          console.log(message);
+          if (message) {
+            alert("User registered successfully");
+            navigate("/Login_form");
+          }
+          else {
+            alert("Failed to register user");
+          }
+        }
+      })
+    }
+    catch(err){
+      console.log(err);
+    }
+
+   
   }
 
   const HandleEmail = (e) => {
@@ -58,7 +84,7 @@ export default function Signup_form() {
   return (
     <>
 
-      <div className="container w-1/4 h-2/3 bg-white rounded-lg shadow-md flex flex-col justify-center items-center">
+      <div className="container w-1/4 h-3/4 bg-white rounded-lg shadow-md flex flex-col justify-center items-center">
         <div className="Heading border-solid border-b-2 border-black w-4/5 h-auto mb-2">
           <h1 className="text-3xl text-black font-100">Registration Form</h1>
         </div>
